@@ -1,0 +1,50 @@
+@import '../../styles/variables';
+
+html {
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  height: 100%;
+  overflow: auto;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.2;
+  font-family: $font;
+  color: $main-color;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:global {
+  #app {
+    height: 100%;
+  }
+
+  h1 {
+    color: #fff;
+  }
+
+  .span {
+    color: #fff;
+    font-weight: 600;
+  }
+}
+
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: $main-bg;
+}
+
+.content {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 992px;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+}

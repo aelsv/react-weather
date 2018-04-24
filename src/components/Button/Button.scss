@@ -1,0 +1,89 @@
+@import '../../styles/functions';
+@import '../../styles/variables';
+
+$sizes: (
+  xs: (
+    'fontSize':       12px,
+    'minHeight':      24px,
+    'padding':        0 8px,
+    'border-radius':  2px,
+  ),
+
+  md: (
+    'minHeight': 32px,
+    'fontSize':  14px,
+    'padding':   0 12px,
+    'border-radius':  3px,
+  ),
+);
+
+$accents: (
+  bostonBlue: (
+    'primary':      #2e92bd,
+    'primary-hover':#13a1de,
+    'primary-focus':#2e92bd,
+  ),
+  atomic: (
+    'primary':       #3c4b53,
+    'primary-hover': #354148,
+    'primary-focus': #354148,
+  ),
+);
+
+.button {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  line-height: 1;
+  border-radius: 0;
+  position: relative;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  background-color: transparent;
+  transition: background-color $transition;
+
+  &:hover { cursor: pointer }
+  &:focus { outline: none }
+
+  &:disabled {
+    opacity: .5;
+
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
+
+  /* @Sizes */
+  @each $key, $value in $sizes {
+    &_#{$key} {
+      font-size: get-in($sizes, $key, 'fontSize');
+
+      /* &_outline, */
+      &_default {
+        padding: get-in($sizes, $key, 'padding');
+        min-height: get-in($sizes, $key, 'minHeight');
+        border-radius: get-in($sizes, $key, 'border-radius');
+      }
+    }
+  }
+
+  /* @Accents */
+  @each $key, $value in $accents {
+    &_default_#{$key} {
+      color: #fff;
+      background-color: get-in($accents, $key, 'primary');
+
+      &:hover:enabled {
+        background-color: get-in($accents, $key, 'primary-hover');
+
+        @if $key == 'milky' {
+          color: get-in($accents, $key, 'primary');
+        }
+      }
+      &:focus {
+        background-color: get-in($accents, $key, 'primary-focus');
+        box-shadow: 0 0 5px 0 get-in($accents, $key, 'primary-focus');
+      }
+    }
+  }
+}

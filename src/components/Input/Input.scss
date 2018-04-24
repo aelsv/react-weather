@@ -1,0 +1,70 @@
+@import '../../styles/mixins';
+@import '../../styles/variables';
+
+.wrapper {
+  width: 100%;
+  min-height: 32px;
+}
+
+.container {
+  position: relative;
+  min-height: inherit;
+}
+
+.field {
+  width: 100%;
+  min-height: inherit;
+  padding: 0 10px;
+  border: 0;
+  line-height: normal;
+  border-radius: 2px;
+  box-sizing: border-box;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  -webkit-appearance: none !important;
+  transition: box-shadow $transition;
+
+  &:focus {
+    outline: none;
+    padding-right: 25px;
+
+    & + .btn { opacity: 1 }
+  };
+
+  @include placeholder {
+    opacity: 1;
+    line-height: normal;
+    text-overflow: ellipsis;
+  }
+}
+
+.btn {
+  padding: 0;
+  border: 0;
+  opacity: 0;
+  outline: none;
+  right: 8px;
+  top: 50%;
+  border-radius: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  background-color: rgba(#ccc, .5);
+  transition: opacity $transition,
+              background-color $transition;
+  
+  &:hover {
+    cursor: pointer;
+    background-color:#ccc;
+  }
+
+  &:before {
+    content: '\2715';
+    color: #fff;
+    font-size: 8px;
+    width: 12px;
+    height: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
