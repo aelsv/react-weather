@@ -1,0 +1,4 @@
+.vscode
+config/*
+scripts/*
+postcss.config.js
