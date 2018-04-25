@@ -2,11 +2,11 @@
 
 ### Installation
 
-#####To install dependencies simply run
+####To install dependencies simply run
 ```
 npm install || yarn install
 ```
-#####To start dev
+####To start dev
 ```
 npm start || yarn start
 ```
