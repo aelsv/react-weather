@@ -14,6 +14,7 @@ const defaultPropsHOC = defaultProps({
   type: 'text',
   value: '',
   placeholder: '',
+  error: '',
 });
 
 export default compose(

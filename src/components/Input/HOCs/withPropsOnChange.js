@@ -8,14 +8,15 @@ import css from '../Input.scss';
 const cx = classNames.bind(css);
 
 export default withPropsOnChange(
-  ['className', 'fieldClassName'],
-  ({ className, fieldClassName }) => ({
+  ['className', 'fieldClassName', 'error'],
+  ({ className, fieldClassName, error }) => ({
     _className: cx({
       wrapper: true,
       [className]: !!className,
     }),
     _fieldClassName: cx({
       field: true,
+      field_invalid: error.length > 0,
       [fieldClassName]: !!fieldClassName,
     }),
   })

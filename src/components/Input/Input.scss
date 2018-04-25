@@ -36,6 +36,11 @@
     line-height: normal;
     text-overflow: ellipsis;
   }
+
+  &_invalid {
+    box-shadow: inset 0 0 0 1px #e75454,
+                0 0 4px 0 #e75454;
+  }
 }
 
 .btn {
@@ -67,4 +72,11 @@
     align-items: center;
     justify-content: center;
   }
+}
+
+.error {
+  display: block;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #e75454;
 }

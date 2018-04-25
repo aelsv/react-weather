@@ -11,7 +11,6 @@ import css from './Input.scss';
 
 const propTypes = {
   exists: bool,
-  isInvalid: bool,
   isAutocomplete: bool,
   id: oneOfType([string, number]).isRequired,
   type: oneOf([
@@ -26,6 +25,7 @@ const propTypes = {
     'url',
     'textarea',
   ]).isRequired,
+  error: string,
   value: string,
   placeholder: string,
   className: string,
@@ -46,6 +46,7 @@ export const inputHOC = compose(HOCs);
 export const input = ({
   id,
   type,
+  error,
   exists,
   isAutocomplete,
   placeholder,
@@ -76,6 +77,9 @@ export const input = ({
         onClick={_onReset}
       />
     </div>
+    <Base exists={error.length > 0} component="span" className={css.error}>
+      {error}
+    </Base>
   </Base>
 );
 
