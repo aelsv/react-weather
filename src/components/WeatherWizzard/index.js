@@ -1,5 +1,5 @@
 import React from 'react';
-import { bool, func, string } from 'prop-types';
+import { arrayOf, func, string, shape, number } from 'prop-types';
 
 /* @Recompose */
 import compose from 'recompose/compose';
@@ -14,32 +14,47 @@ import css from './WeatherWizzard.scss';
 import HOCs from './HOCs';
 
 const propTypes = {
+  city: string,
+  error: string,
+  country: string,
   className: string,
+  temperature: shape({
+    current: number,
+    min: number,
+    max: number,
+  }),
+  queries: arrayOf(
+    shape({
+      id: number,
+      name: string,
+    })
+  ),
+  briefDescription: string,
   /* PrivateProps */
-  _isInvalid: bool,
-  _country: string,
+  _flag: string,
+  _errorMsg: string,
   _value: string,
+  _title: string,
+  _country: string,
   _className: string,
-  _inputClassName: string,
-  _onSubmit: func,
+  _cities: arrayOf(string),
+  _onClick: func,
   _onChange: func,
+  _onSubmit: func,
 };
 
 export const weatherWizzardHOC = compose(HOCs);
 
 export const weatherWizzard = ({
-  /* eslint-disable */
   city,
-  _value,
-  _onClick,
-  _cities,
-  _title,
   temperature,
-  // _history,
-  /* eslint-enable */
-
+  briefDescription,
+  _flag,
+  _errorMsg,
+  _value,
+  _cities,
   _className,
-  _inputClassName,
+  _onClick,
   _onSubmit,
   _onChange,
 }) => (
@@ -51,16 +66,21 @@ export const weatherWizzard = ({
           className={css.input}
           value={_value}
           placeholder="City..."
-          fieldClassName={_inputClassName}
+          error={_errorMsg}
           onChange={_onChange}
         />
-        <Button size="md" className={css.container__button} onClick={_onSubmit}>
+        <Button
+          size="md"
+          className={css.container__button}
+          disabled={!!_errorMsg}
+          onClick={_onSubmit}
+        >
           Get weather!
         </Button>
       </form>
     </div>
     <div className={css.section}>
-      <span className={css.section__heading}>{_title}</span>
+      <span className={css.section__heading}>{`${briefDescription} in ${city} ${_flag}`}</span>
       <div className={css.section__content}>
         <Base exists={!!temperature} className={css.section__container}>
           <span className={css.section__title}>🌡&nbsp;Temperature:</span>

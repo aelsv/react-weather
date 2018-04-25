@@ -7,4 +7,10 @@ export default lifecycle({
 
     fetchWeather('kiev');
   },
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.error !== nextProps.error) {
+      nextProps._setError(nextProps.error);
+    }
+  },
 });

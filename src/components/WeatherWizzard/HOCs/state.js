@@ -3,6 +3,5 @@ import withState from 'recompose/withState';
 
 export default compose(
   withState('_value', '_setValue', ''),
-  // withState('_error', '_setError', {}),
-  withState('_isInvalid', '_setInvalid', props => props.isInvalid)
+  withState('_errorMsg', '_setError', props => props.error)
 );

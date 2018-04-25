@@ -13,6 +13,8 @@ const displayNameHOC = setDisplayName('WeatherWizzard');
 const defaultPropsHOC = defaultProps({
   city: '',
   contry: '',
+  briefDescription: '',
+  queries: [],
 });
 
 export default compose(

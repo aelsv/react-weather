@@ -1,16 +1,20 @@
 import withHandlers from 'recompose/withHandlers';
 
 export default withHandlers({
-  _onChange: ({ _setValue }) => value => {
+  _onChange: ({ _setValue, _setError }) => value => {
     _setValue(value);
+
+    if (value.length > 0) {
+      _setError('');
+    }
   },
 
-  _onSubmit: ({ fetchWeather, city, _value }) => e => {
+  _onSubmit: ({ fetchWeather, city, _value, _setError }) => e => {
     e.preventDefault();
     const isIdenticalQuery = city.toLowerCase() === _value.toLowerCase();
 
     if (_value.length === 0) {
-      console.log('value pustoe');
+      _setError('Please enter city for result');
     } else if (!isIdenticalQuery) {
       fetchWeather(_value);
     }
